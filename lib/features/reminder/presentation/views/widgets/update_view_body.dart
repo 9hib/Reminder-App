@@ -73,8 +73,10 @@ class _UpdateViewBodyState extends State<UpdateViewBody> {
                     onPressed: () async {
                       final pickedTime = await showDatePicker(
                         context: context,
-                        initialDate: DateTime.now(),
-                        firstDate: DateTime.now(),
+                        initialDate: DateTime.now().add(
+                          const Duration(days: 1),
+                        ),
+                        firstDate: DateTime.now().add(const Duration(days: 1)),
                         lastDate: DateTime.now().add(const Duration(days: 365)),
                       );
                       if (pickedTime != null) {
