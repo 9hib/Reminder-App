@@ -6,36 +6,50 @@ class ReminderItem extends StatelessWidget {
   final ReminderModel reminder;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-        color: reminder.isCompleted ? Colors.green : Colors.red,
-      ),
+    return AspectRatio(
+      aspectRatio: 16 / 5,
       child: Card(
+        elevation: 2,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         child: ListTile(
+          contentPadding: const EdgeInsets.all(12),
+          leading: Checkbox(value: reminder.isCompleted, onChanged: (_) {}),
           title: Text(
             reminder.title,
             style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
               decoration: reminder.isCompleted
                   ? TextDecoration.lineThrough
                   : null,
             ),
           ),
           subtitle: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(reminder.description),
-              Align(
-                alignment: Alignment.bottomRight,
-                child: Text(reminder.dateTime.toString()),
+              const SizedBox(height: 4),
+              Text(
+                reminder.description,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+              ),
+              const SizedBox(height: 6),
+              Text(
+                _formatDate(reminder.dateTime),
+                style: TextStyle(fontSize: 12, color: Colors.grey.shade400),
               ),
             ],
           ),
           trailing: IconButton(
-            icon: const Icon(Icons.delete),
+            icon: const Icon(Icons.delete_outline),
             onPressed: () {},
           ),
         ),
       ),
     );
+  }
+
+  String _formatDate(DateTime date) {
+    return '${date.day}/${date.month}/${date.year}';
   }
 }

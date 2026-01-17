@@ -8,9 +8,10 @@ import 'package:reminder_app/features/reminder/data/repo/reminder_repo.dart';
 import 'package:reminder_app/features/reminder/presentation/cubit/reminder_cubit/reminder_cubit.dart';
 
 void main() async {
-  Hive.initFlutter();
-  await Hive.openBox<ReminderModel>('reminderBox');
+  WidgetsFlutterBinding.ensureInitialized();
+  await Hive.initFlutter();
   Hive.registerAdapter(ReminderModelAdapter());
+  await Hive.openBox<ReminderModel>('reminderBox');
   setupLocator();
   runApp(const ReminderApp());
 }
