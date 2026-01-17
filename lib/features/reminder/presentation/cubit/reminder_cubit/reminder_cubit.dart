@@ -45,6 +45,7 @@ class ReminderCubit extends Cubit<ReminderState> {
     emit(ReminderLoading());
     try {
       await reminderRepo.deleteReminder(reminderModel);
+      emit(ReminderLoaded(await reminderRepo.getAllReminders()));
     } catch (e) {
       emit(ReminderError(e.toString()));
     }
