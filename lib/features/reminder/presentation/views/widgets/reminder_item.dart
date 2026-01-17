@@ -17,15 +17,23 @@ class ReminderItem extends StatelessWidget {
           GoRouter.of(context).push(AppRoutes.updateReminder, extra: reminder);
         },
         child: Card(
+          color: reminder.dateTime.isBefore(DateTime.now())
+              ? Colors.red
+              : Colors.grey.shade900,
           elevation: 2,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
           ),
           child: ListTile(
             contentPadding: const EdgeInsets.all(12),
-            leading: Checkbox(value: reminder.isCompleted, onChanged: (value) {
-              BlocProvider.of<ReminderCubit>(context).toggleReminder(reminder);
-            }),
+            leading: Checkbox(
+              value: reminder.isCompleted,
+              onChanged: (value) {
+                BlocProvider.of<ReminderCubit>(
+                  context,
+                ).toggleReminder(reminder);
+              },
+            ),
             title: Text(
               reminder.title,
               style: TextStyle(
