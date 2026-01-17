@@ -57,4 +57,13 @@ class ReminderCubit extends Cubit<ReminderState> {
       emit(ReminderError(e.toString()));
     }
   }
+
+  Future<void> getAllReminders() async {
+    emit(ReminderLoading());
+    try {
+      emit(ReminderLoaded(await reminderRepo.getAllReminders()));
+    } catch (e) {
+      emit(ReminderError(e.toString()));
+    }
+  }
 }

@@ -22,7 +22,7 @@ class ReminderApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => ReminderCubit(getIt.get<ReminderRepo>()),
+      create: (context) => ReminderCubit(getIt.get<ReminderRepo>())..getAllReminders(),
       child: MaterialApp.router(
         routerConfig: AppRoutes.router,
         debugShowCheckedModeBanner: false,
