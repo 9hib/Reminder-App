@@ -20,15 +20,14 @@ class ReminderModelAdapter extends TypeAdapter<ReminderModel> {
       title: fields[0] as String,
       description: fields[1] as String,
       dateTime: fields[2] as DateTime,
-      id: fields[3] as String,
-      isCompleted: fields[4] as bool,
+      isCompleted: fields[3] as bool,
     );
   }
 
   @override
   void write(BinaryWriter writer, ReminderModel obj) {
     writer
-      ..writeByte(5)
+      ..writeByte(4)
       ..writeByte(0)
       ..write(obj.title)
       ..writeByte(1)
@@ -36,8 +35,6 @@ class ReminderModelAdapter extends TypeAdapter<ReminderModel> {
       ..writeByte(2)
       ..write(obj.dateTime)
       ..writeByte(3)
-      ..write(obj.id)
-      ..writeByte(4)
       ..write(obj.isCompleted);
   }
 
