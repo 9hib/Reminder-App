@@ -269,6 +269,7 @@ flutter build windows --release
 ### Running Tests
 
 *Note: Test files are not yet implemented in this project.*
+*Note: add.*
 
 To add and run tests:
 
